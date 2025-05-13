@@ -13,24 +13,21 @@ class Parser:
 
     def __init__(self):
         args = sys.argv[:0:-1]
-        try:
-            while args:
-                arg = args.pop()
-                if not arg.startswith("-"):
-                    self.files.append(arg)
+        while args:
+            arg = args.pop()
+            if not arg.startswith("-"):
+                self.files.append(arg)
+            else:
+                if arg == "--report":
+                    try:
+                        self.report_type = args.pop()
+                    except IndexError:
+                        raise CLIError("Не указан тип отчета")
+                    if args:
+                        raise CLIError("Лишние аргументы!")
                 else:
-                    if arg == "--report":
-                        try:
-                            self.report_type = args.pop()
-                        except IndexError:
-                            raise CLIError("Не указан тип отчета")
-                        if args:
-                            raise CLIError("Лишние аргументы!")
-                    else:
-                        raise CLIError(f"Неверный аргумент: '{arg}'")
-            if not self.files:
-                raise CLIError("Не указан ни один файл")
-            if not self.report_type:
-                raise CLIError("Не указан тип отчета")
-        except CLIError as e:
-            print(f'Ошибка: {e}')
+                    raise CLIError(f"Неверный аргумент: '{arg}'")
+        if not self.files:
+            raise CLIError("Не указан ни один файл")
+        if not self.report_type:
+            raise CLIError("Не указан тип отчета")

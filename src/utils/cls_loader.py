@@ -3,7 +3,7 @@ from typing import Dict
 from src.reports.report_class import Report
 
 
-def get_subclasses(cls: type[Report]) -> Dict[str, type]:
+def get_subclasses(cls: type[Report]) -> Dict[str, type[Report]]:
     """
     Возвращает словарь, содержащий все неабстрактные подклассы.
     Args:
