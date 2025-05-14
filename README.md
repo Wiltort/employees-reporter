@@ -23,6 +23,7 @@ python main.py [ФАЙЛЫ] --report [ТИП_ОТЧЕТА]
 ``` bash
 python main.py upload/data1.csv upload/data2.csv --report payout
 ```
+![alt text](image.png)
 ### Параметры
 - ФАЙЛЫ - Пути к входным файлам
 - ТИП_ОТЧЕТА - Тип генерируемого отчета

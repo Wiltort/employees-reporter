@@ -5,6 +5,12 @@
             "name": "Alice Johnson",
             "hours": 160,
             "payout": "$ 8000"
+        },
+        {
+            "department": "------",
+            "name": "Henry Martin",
+            "hours": 150,
+            "payout": "$ 5250"
         }
     ],
     "Design": [
@@ -19,6 +25,40 @@
             "name": "Carol Williams",
             "hours": 170,
             "payout": "$ 10200"
+        }
+    ],
+    "HR": [
+        {
+            "department": "------",
+            "name": "Grace Lee",
+            "hours": 160,
+            "payout": "$ 7200"
+        },
+        {
+            "department": "------",
+            "name": "Ivy Clark",
+            "hours": 158,
+            "payout": "$ 6004"
+        },
+        {
+            "department": "------",
+            "name": "Liam Harris",
+            "hours": 155,
+            "payout": "$ 6510"
+        }
+    ],
+    "Sales": [
+        {
+            "department": "------",
+            "name": "Karen White",
+            "hours": 165,
+            "payout": "$ 8250"
+        },
+        {
+            "department": "------",
+            "name": "Mia Young",
+            "hours": 160,
+            "payout": "$ 5920"
         }
     ]
 }

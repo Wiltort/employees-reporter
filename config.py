@@ -1,5 +1,6 @@
 class Config:
     FIELD_NAME_DICT = {
+        # Словарь содержит все варианты наименования родственных полей
         'department': ['department',],
         'name': ['name',],
         'hours': ['hours_worked', 'hours'],
