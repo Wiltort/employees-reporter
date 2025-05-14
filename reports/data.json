@@ -1,0 +1,24 @@
+{
+    "Marketing": [
+        {
+            "department": "------",
+            "name": "Alice Johnson",
+            "hours": 160,
+            "payout": "$ 8000"
+        }
+    ],
+    "Design": [
+        {
+            "department": "------",
+            "name": "Bob Smith",
+            "hours": 150,
+            "payout": "$ 6000"
+        },
+        {
+            "department": "------",
+            "name": "Carol Williams",
+            "hours": 170,
+            "payout": "$ 10200"
+        }
+    ]
+}

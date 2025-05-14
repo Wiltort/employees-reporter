@@ -5,13 +5,15 @@ from src.cli import CLIError
 from src.file_import import CSVReader
 from src.utils.cls_loader import get_subclasses
 from src.data_processing import DataSet
-from config import Config
+from src.views import print_table
+import json
 
 
 class ReportManager:
     """
     Класс, предназначенный для составления отчетов из файлов
     """
+
     report: type[reports.Report]
     files: List[str]
 
@@ -31,10 +33,13 @@ class ReportManager:
             else:
                 data = reader.read_file(file=file).standardize()
         report = self.report.get_summary(data)
-        print(
-            report.to_dict(
-                order_by_ind=self.report.conf.get('order_by_field_index'),
-                group_by_ind=self.report.conf.get('group_by_field_index'),
-            )
+        gr_index = self.report.conf.get("group_by_field_index")
+        data = report.to_dict(
+            order_by_ind=self.report.conf.get("order_by_field_index"),
+            group_by_ind=gr_index,
         )
-        
+        grouped = gr_index is not None
+        title = self.report.conf.get("title", "")
+        print_table(data, title=title, grouped=grouped)
+        with open("reports/data.json", "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)

@@ -4,12 +4,13 @@ from typing import List
 
 class CLIError(Exception):
     """Неверные параметры командной строки"""
+
     pass
 
 
 class Parser:
     files: List[str] = []
-    report_type: str = ''
+    report_type: str = ""
 
     def __init__(self):
         args = sys.argv[:0:-1]

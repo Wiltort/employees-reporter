@@ -4,6 +4,7 @@ from config import Config
 
 class DataError(Exception):
     """Класс ошибок данных"""
+
     pass
 
 
@@ -19,9 +20,9 @@ class DataSet:
     def to_list(self):
         records = []
         for index in self.indexes:
-           records.append([value[index] for value in self.records.values()])
+            records.append([value[index] for value in self.records.values()])
         return records
-    
+
     def _next_index(self):
         ind = 0
         while True:
@@ -39,7 +40,7 @@ class DataSet:
                 record = {field: value[i] for field, value in ds.records.items()}
                 value = record[gr_field]
                 data[value] = data.get(value, [])
-                record[gr_field] = '------'
+                record[gr_field] = "------"
                 data[value].append(record)
             return data
         for i in ds.indexes:
@@ -48,7 +49,7 @@ class DataSet:
 
     def add_record(self, record: List[str]):
         if len(record) != len(self.records):
-            raise DataError('Неверное количество полей')
+            raise DataError("Неверное количество полей")
         self.indexes.append(next(self._index_counter))
         for number, field in enumerate(self.records.keys()):
             value = record[number]
@@ -61,7 +62,7 @@ class DataSet:
                     pass
             self.records[field].append(value)
 
-    def standardize(self) -> 'DataSet':
+    def standardize(self) -> "DataSet":
         new_ds = DataSet()
         standart_fields = Config.FIELD_NAME_DICT.keys()
         new_ds.set_fields(standart_fields)
@@ -76,14 +77,14 @@ class DataSet:
                             value = value[index]
                             break
                     new_record.append(value)
-                new_ds.add_record(new_record)    
+                new_ds.add_record(new_record)
         return new_ds
-    
-    def extend(self, other: 'DataSet'):
+
+    def extend(self, other: "DataSet"):
         data_dict = other.to_dict()
         for ind in other.indexes:
             self.add_record(list(data_dict[ind].values()))
-    
+
     def order_by(self, field_index: int, desc: bool = False):
         if field_index > len(self.records) + 1:
             raise ValueError
@@ -93,22 +94,16 @@ class DataSet:
         for record in records:
             new_ds.add_record(record)
         return new_ds
-    
+
 
 class ReportDataSet(DataSet):
 
     def standardize(self, fields: dict):
         new_report = ReportDataSet()
-        fields = fields['existing_fields'] + fields['calculated_fields']
+        fields = fields["existing_fields"] + fields["calculated_fields"]
         new_report.set_fields(fields)
         data = self.to_dict()
         if self.indexes:
             for index in self.indexes:
                 new_report.add_record(list(data[index].values()))
         return new_report
-
-
-
-
-
-
